@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "814422893310",
+    "firebase_url": "https://projet-rappels.firebaseio.com",
+    "project_id": "projet-rappels",
+    "storage_bucket": "projet-rappels.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814422893310:android:a14c64ad2da9e0f633bbaf",
+        "android_client_info": {
+          "package_name": "com.ynov.projetrappels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814422893310-9pjkur8u8ac2ojm0icoafeslaqf1bqgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2UYki_8nblKDpxHkbkuOxVnqe13Ttq5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814422893310-9pjkur8u8ac2ojm0icoafeslaqf1bqgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
