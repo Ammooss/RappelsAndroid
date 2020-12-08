@@ -13,4 +13,3 @@ public class Rappel {
         this.titre = titre;
     }
 }
-

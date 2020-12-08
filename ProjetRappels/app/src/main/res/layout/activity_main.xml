@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/btnCreateRappel"
         android:layout_width="195dp"
         android:layout_height="56dp"
         android:layout_marginEnd="20dp"
@@ -38,7 +38,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreateRappel"
         app:layout_constraintTop_toBottomOf="@+id/tvRappels">
 
         <LinearLayout
@@ -48,7 +48,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvHeure"
+                android:id="@+id/tvHeureCreate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
