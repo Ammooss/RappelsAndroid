@@ -13,8 +13,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DatabaseReference firebasedb;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,24 +25,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RappelCreation.class);
-                startActivityForResult(intent, 48);
+                startActivity(intent);
             }
         });
-
-        //Gestion base de donnée Firebase
-        firebasedb = FirebaseDatabase.getInstance().getReference();
-
-        String id = "02";
-        String titre = "DEBOUT";
-
-        creeRappel(id, titre);
     }
-
-    //Firebase ajout Rappel
-    public void creeRappel (String id, String titre) {
-        Rappel rappel = new Rappel (titre);
-        firebasedb.child("rappels").child(id).setValue(rappel);
-        //firebasedb.child("rappels").child(id).child("titre").setValue("f");
-    }
-
 }
