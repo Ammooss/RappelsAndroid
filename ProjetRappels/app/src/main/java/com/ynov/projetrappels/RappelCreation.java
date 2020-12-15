@@ -37,6 +37,14 @@ public class RappelCreation extends AppCompatActivity {
                 String strHeureCreer = etHeureCreer.getText().toString();
                 String strDateCreer = etDateCreer.getText().toString();
 
+                findViewById(R.id.tvChampsVides);
+                findViewById(R.id.tvEnvoye);
+                findViewById(R.id.btnRappelCreate);
+
+                if(strNomCreer.equals("") || strHeureCreer.equals("") || strDateCreer.equals("")){
+
+                }
+
                 creeRappel(strNomCreer, strHeureCreer, strDateCreer);
             }
         });
