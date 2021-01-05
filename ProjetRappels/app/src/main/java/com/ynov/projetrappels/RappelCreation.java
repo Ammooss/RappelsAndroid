@@ -1,9 +1,13 @@
 package com.ynov.projetrappels;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -11,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class RappelCreation extends AppCompatActivity {
+public class RappelCreation extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
     public DatabaseReference firebasedb;
 
@@ -25,34 +29,56 @@ public class RappelCreation extends AppCompatActivity {
 
         setContentView(R.layout.rappel_creation);
 
-        //EditText rappel_creation
-        EditText etNomCreer = findViewById(R.id.etNomRappel);
-        EditText etHeureCreer = findViewById(R.id.etHeureCreate);
-        EditText etDateCreer = findViewById(R.id.etDateCreate);
-
-        //TextView rappel_creation
-        TextView tvRappelCreate = findViewById(R.id.tvRappelCreate);
-        TextView tvChampsRemplir = findViewById(R.id.tvChampsRemplir);
-
-        //Button rappel_creation Validation du formulaire
-        FloatingActionButton btnRappelCreer = findViewById(R.id.btnRappelCreate);
-
-        //TextView rappel_creation Affichage si erreur ou Ok
-        tvRappelCreate.setVisibility(View.INVISIBLE);
-        tvChampsRemplir.setVisibility(View.INVISIBLE);
-
         //Gestion base de donnée Firebase
         firebasedb = FirebaseDatabase.getInstance().getReference();
+
+        //Récupération des éléments xml
+            //EditText rappel_creation
+            EditText etNomCreer = findViewById(R.id.etNomRappel);
+
+            //TextView rappel_creation
+            TextView tvHeureSelected = findViewById(R.id.tvHeureSelected);
+            TextView tvDateSelected = findViewById(R.id.tvDateSelected);
+            TextView tvRappelCreate = findViewById(R.id.tvRappelCreate);
+            TextView tvChampsRemplir = findViewById(R.id.tvChampsRemplir);
+
+            //Button rappel_creation
+            Button btnHeureSelect = findViewById(R.id.btnHeureSelect);
+            Button btnDateSelect = findViewById(R.id.btnDateSelect);
+
+            //Button rappel_creation Validation du formulaire
+            FloatingActionButton btnRappelCreer = findViewById(R.id.btnRappelCreate);
+
+            //TextView rappel_creation Affichage si Ok ou Erreur
+            tvRappelCreate.setVisibility(View.INVISIBLE);
+            tvChampsRemplir.setVisibility(View.INVISIBLE);
+
+        //Button Select Heure et Date
+        btnHeureSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment timePicker = new TimePicker();
+                timePicker.show(getSupportFragmentManager(), "Time Picker");
+            }
+        });
+
+        btnDateSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new DatePicker();
+                datePicker.show(getSupportFragmentManager(), "Date Picker");
+            }
+        });
 
         //Bouton creation du rappel
         btnRappelCreer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 strNomCreer = etNomCreer.getText().toString();
-                strHeureCreer = etHeureCreer.getText().toString();
-                strDateCreer = etDateCreer.getText().toString();
+                strHeureCreer = tvHeureSelected.getText().toString();
+                strDateCreer = tvDateSelected.getText().toString();
 
-                if(strNomCreer.equals("") || strHeureCreer.equals("") || strDateCreer.equals("")){
+                if(strNomCreer.equals("") || strHeureCreer.equals("Heure") || strDateCreer.equals("Date")){
                     tvChampsRemplir.setVisibility(View.VISIBLE);
                 } else {
                     //Appel a la fonction qui envoie les données a Firebase
@@ -64,6 +90,20 @@ public class RappelCreation extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    //TimePicker
+    @Override
+    public void onTimeSet(android.widget.TimePicker view, int heure, int minute) {
+        TextView tvHeureSelected = findViewById(R.id.tvHeureSelected);
+        tvHeureSelected.setText(heure + ":" + minute);
+    }
+
+    //DatePicker
+    @Override
+    public void onDateSet(android.widget.DatePicker view, int annee, int mois, int jour) {
+        TextView tvDateSelected = findViewById(R.id.tvDateSelected);
+        tvDateSelected.setText(jour + "/" + mois + "/" + annee);
     }
 
     //Firebase ajout Rappel

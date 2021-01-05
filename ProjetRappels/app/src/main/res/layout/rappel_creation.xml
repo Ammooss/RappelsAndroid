@@ -43,18 +43,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNomRappel" />
 
-    <EditText
-        android:id="@+id/etHeureCreate"
+    <Button
+        android:id="@+id/btnHeureSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="100dp"
-        android:ems="10"
-        android:inputType="time"
+        android:layout_marginEnd="119dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Heure"
+        android:textColor="#01574F"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHeureCreate" />
+
+    <TextView
+        android:id="@+id/tvHeureSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="119dp"
+        android:layout_marginEnd="10dp"
+        android:text="Heure"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnHeureSelect"
+        app:layout_constraintEnd_toStartOf="@+id/btnHeureSelect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnHeureSelect" />
 
     <TextView
         android:id="@+id/tvDateCreate"
@@ -66,20 +78,32 @@
         android:text="Programmer une Date :"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHeureCreate" />
+        app:layout_constraintTop_toBottomOf="@+id/btnHeureSelect" />
 
-    <EditText
-        android:id="@+id/etDateCreate"
+    <Button
+        android:id="@+id/btnDateSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="100dp"
-        android:ems="10"
-        android:inputType="date"
+        android:layout_marginEnd="128dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Date"
+        android:textColor="#01574F"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDateCreate" />
+
+    <TextView
+        android:id="@+id/tvDateSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginEnd="10dp"
+        android:text="Date"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnDateSelect"
+        app:layout_constraintEnd_toStartOf="@+id/btnDateSelect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnDateSelect" />
 
     <TextView
         android:id="@+id/tvRappelCreate"
@@ -93,7 +117,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDateCreate" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDateSelect" />
 
     <TextView
         android:id="@+id/tvChampsRemplir"
@@ -107,7 +131,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDateCreate" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDateSelect" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnRappelCreate"
@@ -116,6 +140,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
+        app:backgroundTint="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_today" />
