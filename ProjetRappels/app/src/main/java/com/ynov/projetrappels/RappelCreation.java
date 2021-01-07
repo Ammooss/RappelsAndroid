@@ -26,11 +26,7 @@ public class RappelCreation extends AppCompatActivity implements TimePickerDialo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.rappel_creation);
-
-        //Gestion base de donnée Firebase
-        firebasedb = FirebaseDatabase.getInstance().getReference();
 
         //Récupération des éléments xml
             //EditText rappel_creation
@@ -52,6 +48,9 @@ public class RappelCreation extends AppCompatActivity implements TimePickerDialo
             //TextView rappel_creation Affichage si Ok ou Erreur
             tvRappelCreate.setVisibility(View.INVISIBLE);
             tvChampsRemplir.setVisibility(View.INVISIBLE);
+
+        //Gestion base de donnée Firebase
+        firebasedb = FirebaseDatabase.getInstance().getReference();
 
         //Button Select Heure et Date
         btnHeureSelect.setOnClickListener(new View.OnClickListener() {

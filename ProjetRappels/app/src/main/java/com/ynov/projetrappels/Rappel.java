@@ -17,4 +17,8 @@ public class Rappel {
         this.heure = heure;
         this.date = date;
     }
+
+    public String toString() {
+        return "Nom : " + this.nom + "\n" + "Heure : " + heure + "\n" + "Date : " + date;
+    }
 }
