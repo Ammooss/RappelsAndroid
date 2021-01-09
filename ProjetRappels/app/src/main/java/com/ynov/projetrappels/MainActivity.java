@@ -35,11 +35,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Récupération des éléments xml
-        //ListView activity_main
-        lvRappel = findViewById(R.id.lvRappel);
+            //ListView activity_main
+            lvRappel = findViewById(R.id.lvRappel);
 
-        //Button activity_main
-        FloatingActionButton btnPlusRappel = findViewById(R.id.btnCreateRappel);
+            //Button activity_main
+            FloatingActionButton btnCreateRappel = findViewById(R.id.btnCreateRappel);
+            FloatingActionButton btnUpdateRappel = findViewById(R.id.btnUpdateRappel);
 
         arrayAdapterRappel = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayListRappel);
 
@@ -76,8 +77,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Bouton changement d'activity
-        btnPlusRappel.setOnClickListener(new View.OnClickListener() {
+        //Button Update Rappel
+        btnUpdateRappel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RappelUpdate.class);
+                startActivity(intent);
+            }
+        });
+
+        //Button Créer Rappel
+        btnCreateRappel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RappelCreation.class);

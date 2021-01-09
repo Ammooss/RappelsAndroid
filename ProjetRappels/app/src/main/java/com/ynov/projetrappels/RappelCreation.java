@@ -30,7 +30,7 @@ public class RappelCreation extends AppCompatActivity implements TimePickerDialo
 
         //Récupération des éléments xml
             //EditText rappel_creation
-            EditText etNomCreer = findViewById(R.id.etNomRappel);
+            EditText etNomRappel = findViewById(R.id.etNomRappel);
 
             //TextView rappel_creation
             TextView tvHeureSelected = findViewById(R.id.tvHeureSelected);
@@ -69,11 +69,11 @@ public class RappelCreation extends AppCompatActivity implements TimePickerDialo
             }
         });
 
-        //Bouton creation du rappel
+        //Button Creation du rappel
         btnRappelCreer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                strNomCreer = etNomCreer.getText().toString();
+                strNomCreer = etNomRappel.getText().toString();
                 strHeureCreer = tvHeureSelected.getText().toString();
                 strDateCreer = tvDateSelected.getText().toString();
 
@@ -105,11 +105,9 @@ public class RappelCreation extends AppCompatActivity implements TimePickerDialo
         tvDateSelected.setText(jour + "/" + mois + "/" + annee);
     }
 
-    //Firebase ajout Rappel
+    //Firebase Ajout du Rappel
     private void creeRappel (String nom, String heure, String date) {
         Rappel rappel = new Rappel (nom, heure, date);
         firebasedb.child("rappels").child(nom).setValue(rappel);
-
-        //firebasedb.child("rappels").child(id).child("titre").setValue("Ce qui doit être modifier");
     }
 }
