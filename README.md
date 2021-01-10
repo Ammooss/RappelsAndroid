@@ -5,9 +5,9 @@ Membres du groupe :
 Fonctionnement de l'application :
 
 1 - Lors de l'ouverture de l'application, trois bouton au bas de l'écran sont disponible, chacun ayant une fonctionnalité :
-- Créer un Rappel
-- Modifier un Rappel
-- Supprimer un Rappel
+- Créer un rappel
+- Modifier un rappel
+- Supprimer un rappel
 
       Il est possible de voir les rappels sur l'activité principale si des rappels existent
   
