@@ -1,4 +1,6 @@
-Maxence Rougé, Nicolas Seillé
+Membres du groupe :
+- Rougé Maxence
+- Seillé Nicolas
 
 Fonctionnement de l'application :
 
