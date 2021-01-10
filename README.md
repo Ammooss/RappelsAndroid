@@ -10,8 +10,8 @@ Fonctionnement de l'application :
       Il est possible de voir les rappels sur l'activité principale si des rappels existent
   
 2 - La création d'un rappel nécéssite de remplir trois champs :
-      - Le nom du rappel
-      - L'heure du rappel
-      - La date du rappel
+- Le nom du rappel
+- L'heure du rappel
+- La date du rappel
 
 3 - La modification d'un rappel cécéssite de remplir un champs
