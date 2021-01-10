@@ -25,7 +25,6 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
 
     public DatabaseReference firebasedb;
 
-    public String strNomRappel;
     public String strNomUpdate;
     public String strHeureUpdate;
     public String strDateUpdate;
@@ -58,13 +57,14 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
         btnRetrieveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                strNomRappel = etNomRappel.getText().toString();
-                firebasedb = FirebaseDatabase.getInstance().getReference("rappels").child(strNomRappel);
+                strNomUpdate = etNomRappel.getText().toString();
+                firebasedb = FirebaseDatabase.getInstance().getReference("rappels").child(strNomUpdate);
 
                 if(TextUtils.isEmpty(strNomUpdate)){
                     Toast.makeText(RappelUpdate.this, "Un champ à remplir est vide", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(RappelUpdate.this, "Information Récupéré !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RappelUpdate.this, "Information Récupérée !", Toast.LENGTH_SHORT).show();
+                    btnRetrieveData.setVisibility(View.INVISIBLE);
                     firebasedb.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
