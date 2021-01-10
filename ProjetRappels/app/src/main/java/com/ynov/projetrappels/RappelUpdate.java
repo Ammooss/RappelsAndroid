@@ -60,22 +60,28 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
             public void onClick(View v) {
                 strNomRappel = etNomRappel.getText().toString();
                 firebasedb = FirebaseDatabase.getInstance().getReference("rappels").child(strNomRappel);
-                firebasedb.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Rappel rappel = snapshot.getValue(Rappel.class);
-                        strHeureUpdate = rappel.heure;
-                        strDateUpdate = rappel.date;
 
-                        tvHeureSelected.setText(strHeureUpdate);
-                        tvDateSelected.setText(strDateUpdate);
-                    }
+                if(TextUtils.isEmpty(strNomUpdate)){
+                    Toast.makeText(RappelUpdate.this, "Un champ à remplir est vide", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RappelUpdate.this, "Information Récupéré !", Toast.LENGTH_SHORT).show();
+                    firebasedb.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Rappel rappel = snapshot.getValue(Rappel.class);
+                            strHeureUpdate = rappel.heure;
+                            strDateUpdate = rappel.date;
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                            tvHeureSelected.setText(strHeureUpdate);
+                            tvDateSelected.setText(strDateUpdate);
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
             }
         });
 

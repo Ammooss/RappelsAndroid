@@ -42,7 +42,7 @@ public class RappelDelete extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(strNomDelete)){
                     Toast.makeText(RappelDelete.this, "Un champ à remplir est vide", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Toast.makeText(RappelDelete.this, "Rappel Supprimé !", Toast.LENGTH_SHORT).show();
                     btnRappelDelete.setVisibility(View.INVISIBLE);
 
