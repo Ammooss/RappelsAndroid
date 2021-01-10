@@ -17,7 +17,7 @@ Fonctionnement de l'application :
 
 3 - La modification d'un rappel nécéssite de remplir trois champs :
 - Le nom d'un rappel existant
-Appuyer sur le bouton Récupérer afin de récupérer les éléments pour le rappel correspondant
+        Appuyer sur le bouton Récupérer afin de récupérer les éléments pour le rappel correspondant
 - Modifier l'heure du rappel
 - Modifier la date du rappel
 
