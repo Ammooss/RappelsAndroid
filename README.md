@@ -6,8 +6,8 @@ Fonctionnement de l'application :
       - Créer un Rappel
       - Modifier un Rappel
       - Supprimer un Rappel
-      
-    Il est possible de voir les rappels sur l'activité principale si des rappels existent
+
+Il est possible de voir les rappels sur l'activité principale si des rappels existent
   
 2 - La création d'un rappel nécéssite de remplir trois champs :
       - Le nom du rappel
