@@ -18,6 +18,7 @@ public class Rappel {
         this.date = date;
     }
 
+    //Format d'affichage des données sur la ListView sur activiy_main
     public String toString() {
         return "Nom : " + this.nom + "\n" + "Heure : " + heure + "\n" + "Date : " + date;
     }

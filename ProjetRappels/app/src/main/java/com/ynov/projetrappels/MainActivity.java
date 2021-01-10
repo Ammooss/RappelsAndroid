@@ -21,33 +21,34 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public ListView lvRappel;
-
     public DatabaseReference firebasedb;
-
-    ArrayList<String> arrayListRappel = new ArrayList<>();
-
-    ArrayAdapter<String> arrayAdapterRappel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Gestion base de donnée Firebase
+        firebasedb = FirebaseDatabase.getInstance().getReference("rappels");
+
         //Récupération des éléments xml
             //ListView activity_main
-            lvRappel = findViewById(R.id.lvRappel);
+            ListView lvRappel = findViewById(R.id.lvRappel);
 
             //Button activity_main
             FloatingActionButton btnCreateRappel = findViewById(R.id.btnCreateRappel);
             FloatingActionButton btnUpdateRappel = findViewById(R.id.btnUpdateRappel);
+            FloatingActionButton btnDeleteRappel = findViewById(R.id.btnDeleteRappel);
 
-        arrayAdapterRappel = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayListRappel);
+            //Array pour récupérer les données de firebase
+            ArrayList<String> arrayListRappel = new ArrayList<>();
+            ArrayAdapter<String> arrayAdapterRappel;
+            arrayAdapterRappel = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayListRappel);
 
-        lvRappel.setAdapter(arrayAdapterRappel);
+            //List View affiche les données de firebase
+            lvRappel.setAdapter(arrayAdapterRappel);
 
-        //Gestion base de donnée Firebase
-        firebasedb = FirebaseDatabase.getInstance().getReference("rappels");
+        //Affichage des données dans la ListView
         firebasedb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -77,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Button Créer Rappel
+        btnCreateRappel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RappelCreation.class);
+                startActivity(intent);
+            }
+        });
+
         //Button Update Rappel
         btnUpdateRappel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Button Créer Rappel
-        btnCreateRappel.setOnClickListener(new View.OnClickListener() {
+        //Button Delete Rappel
+        btnDeleteRappel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RappelCreation.class);
+                Intent intent = new Intent(getApplicationContext(), RappelDelete.class);
                 startActivity(intent);
             }
         });

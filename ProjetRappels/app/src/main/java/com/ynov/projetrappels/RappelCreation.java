@@ -6,10 +6,12 @@ import androidx.fragment.app.DialogFragment;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +29,9 @@ public class RappelCreation extends AppCompatActivity implements TimePickerDialo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rappel_creation);
+        
+        //Gestion base de donnée Firebase
+        firebasedb = FirebaseDatabase.getInstance().getReference();
 
         //Récupération des éléments xml
             //EditText rappel_creation
@@ -35,8 +40,6 @@ public class RappelCreation extends AppCompatActivity implements TimePickerDialo
             //TextView rappel_creation
             TextView tvHeureSelected = findViewById(R.id.tvHeureSelected);
             TextView tvDateSelected = findViewById(R.id.tvDateSelected);
-            TextView tvRappelCreate = findViewById(R.id.tvRappelCreate);
-            TextView tvChampsRemplir = findViewById(R.id.tvChampsRemplir);
 
             //Button rappel_creation
             Button btnHeureSelect = findViewById(R.id.btnHeureSelect);
@@ -45,14 +48,7 @@ public class RappelCreation extends AppCompatActivity implements TimePickerDialo
             //Button rappel_creation Validation du formulaire
             FloatingActionButton btnRappelCreer = findViewById(R.id.btnRappelCreate);
 
-            //TextView rappel_creation Affichage si Ok ou Erreur
-            tvRappelCreate.setVisibility(View.INVISIBLE);
-            tvChampsRemplir.setVisibility(View.INVISIBLE);
-
-        //Gestion base de donnée Firebase
-        firebasedb = FirebaseDatabase.getInstance().getReference();
-
-        //Button Select Heure et Date
+        //Button Selection Heure et Date
         btnHeureSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,15 +73,14 @@ public class RappelCreation extends AppCompatActivity implements TimePickerDialo
                 strHeureCreer = tvHeureSelected.getText().toString();
                 strDateCreer = tvDateSelected.getText().toString();
 
-                if(strNomCreer.equals("") || strHeureCreer.equals("Heure") || strDateCreer.equals("Date")){
-                    tvChampsRemplir.setVisibility(View.VISIBLE);
+                if(TextUtils.isEmpty(strNomCreer) || strHeureCreer.equals("Heure") || strDateCreer.equals("Date")){
+                    Toast.makeText(RappelCreation.this, "Un des champs à remplir est vide", Toast.LENGTH_SHORT).show();
                 } else {
+                    Toast.makeText(RappelCreation.this, "Rappel Créé !", Toast.LENGTH_SHORT).show();
+                    btnRappelCreer.setVisibility(View.INVISIBLE);
+
                     //Appel a la fonction qui envoie les données a Firebase
                     creeRappel(strNomCreer, strHeureCreer, strDateCreer);
-
-                    btnRappelCreer.setVisibility(View.INVISIBLE);
-                    tvChampsRemplir.setVisibility(View.INVISIBLE);
-                    tvRappelCreate.setVisibility(View.VISIBLE);
                 }
             }
         });

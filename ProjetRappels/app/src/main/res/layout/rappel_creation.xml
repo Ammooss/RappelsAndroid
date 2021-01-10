@@ -10,10 +10,8 @@
         android:id="@+id/tvNomRappel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="93dp"
         android:layout_marginTop="75dp"
-        android:layout_marginEnd="93dp"
-        android:text="Indiquer le nom du rappel à modifier"
+        android:text="Indiquer le nom du rappel à créer :"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,10 +20,9 @@
         android:id="@+id/etNomRappel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="100dp"
         android:ems="10"
+        android:hint="Entrer un nom"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +32,7 @@
         android:id="@+id/tvHeureCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="129dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="129dp"
+        android:layout_marginTop="75dp"
         android:text="Programmer une Heure :"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,32 +42,31 @@
         android:id="@+id/btnHeureSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/teal_200"
         android:text="Heure"
         android:textColor="#01574F"
-        app:layout_constraintStart_toEndOf="@+id/tvHeureSelected"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHeureCreate" />
 
     <TextView
         android:id="@+id/tvHeureSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="119dp"
+        android:layout_marginEnd="50dp"
         android:text="Heure"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnHeureSelect"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnHeureSelect"
         app:layout_constraintTop_toTopOf="@+id/btnHeureSelect" />
 
     <TextView
         android:id="@+id/tvDateCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="133dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="133dp"
+        android:layout_marginTop="75dp"
         android:text="Programmer une Date :"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,52 +76,25 @@
         android:id="@+id/btnDateSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/teal_200"
         android:text="Date"
         android:textColor="#01574F"
-        app:layout_constraintStart_toEndOf="@+id/tvDateSelected"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDateCreate" />
 
     <TextView
         android:id="@+id/tvDateSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
+        android:layout_marginEnd="50dp"
         android:text="Date"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnDateSelect"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDateSelect"
         app:layout_constraintTop_toTopOf="@+id/btnDateSelect" />
-
-    <TextView
-        android:id="@+id/tvRappelCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="172dp"
-        android:text="Rappel Créé !"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDateSelect" />
-
-    <TextView
-        android:id="@+id/tvChampsRemplir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="74dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="74dp"
-        android:text="Un des champs à remplir est vide"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDateSelect" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnRappelCreate"
@@ -139,6 +106,7 @@
         app:backgroundTint="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="#4CAF50"
         app:srcCompat="@android:drawable/ic_menu_today" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

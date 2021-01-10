@@ -7,10 +7,12 @@ import androidx.fragment.app.DialogFragment;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +35,9 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rappel_update);
 
+        //Gestion base de donnée Firebase
+        firebasedb = FirebaseDatabase.getInstance().getReference("rappels");
+
         //Récupération des éléments xml
             //EditText rappel_update
             EditText etNomRappel = findViewById(R.id.etNomRappel);
@@ -40,8 +45,6 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
             //TextView rappel_update
             TextView tvHeureSelected = findViewById(R.id.tvHeureSelected);
             TextView tvDateSelected = findViewById(R.id.tvDateSelected);
-            TextView tvRappelUpdate = findViewById(R.id.tvRappelUpdate);
-            TextView tvChampsRemplir = findViewById(R.id.tvChampsRemplir);
 
             //Button rappel_update
             Button btnRetrieveData = findViewById(R.id.btnRetrieveData);
@@ -51,36 +54,12 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
             //Button rappel_update Validation du formulaire
             FloatingActionButton btnRappelUpdate = findViewById(R.id.btnRappelUpdate);
 
-            //TextView rappel_update Affichage si Ok ou Erreur
-            tvRappelUpdate.setVisibility(View.INVISIBLE);
-            tvChampsRemplir.setVisibility(View.INVISIBLE);
-
-        //Gestion base de donnée Firebase
-        firebasedb = FirebaseDatabase.getInstance().getReference("rappels");
-
-        //Button Select Heure et Date
-        btnHeureSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment timePicker = new TimePicker();
-                timePicker.show(getSupportFragmentManager(), "Time Picker");
-            }
-        });
-
-        btnDateSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePicker = new DatePicker();
-                datePicker.show(getSupportFragmentManager(), "Date Picker");
-            }
-        });
-
         //Button Récupération du rappel
         btnRetrieveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 strNomRappel = etNomRappel.getText().toString();
-                firebasedb = FirebaseDatabase.getInstance().getReference().child("rappels/"+strNomRappel);
+                firebasedb = FirebaseDatabase.getInstance().getReference("rappels").child(strNomRappel);
                 firebasedb.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -100,6 +79,23 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
             }
         });
 
+        //Button Selection Heure et Date
+        btnHeureSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment timePicker = new TimePicker();
+                timePicker.show(getSupportFragmentManager(), "Time Picker");
+            }
+        });
+
+        btnDateSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new DatePicker();
+                datePicker.show(getSupportFragmentManager(), "Date Picker");
+            }
+        });
+
         //Button Modification du rappel
         btnRappelUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,15 +104,14 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
                 strHeureUpdate = tvHeureSelected.getText().toString();
                 strDateUpdate = tvDateSelected.getText().toString();
 
-                if(strNomUpdate.equals("") || strHeureUpdate.equals("Heure") || strDateUpdate.equals("Date")){
-                    tvChampsRemplir.setVisibility(View.VISIBLE);
+                if(TextUtils.isEmpty(strNomUpdate) || strHeureUpdate.equals("Heure") || strDateUpdate.equals("Date")){
+                    Toast.makeText(RappelUpdate.this, "Un des champs à remplir est vide", Toast.LENGTH_SHORT).show();
                 } else {
+                    Toast.makeText(RappelUpdate.this, "Rappel Modifié !", Toast.LENGTH_SHORT).show();
+                    btnRappelUpdate.setVisibility(View.INVISIBLE);
+
                     //Appel a la fonction qui envoie les données a Firebase
                     updateRappel(strNomUpdate);
-
-                    btnRappelUpdate.setVisibility(View.INVISIBLE);
-                    tvChampsRemplir.setVisibility(View.INVISIBLE);
-                    tvRappelUpdate.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -138,7 +133,7 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
 
     //Firebase Modification du Rappel
     private void updateRappel (String nom) {
-        firebasedb.child(nom).child("heure").setValue(strHeureUpdate);
-        firebasedb.child(nom).child("date").setValue(strDateUpdate);
+        firebasedb.child("heure").setValue(strHeureUpdate);
+        firebasedb.child("date").setValue(strDateUpdate);
     }
 }

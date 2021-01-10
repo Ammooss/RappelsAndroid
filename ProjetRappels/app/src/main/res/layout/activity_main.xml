@@ -27,7 +27,9 @@
         app:layout_constraintBottom_toTopOf="@+id/btnCreateRappel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRappels" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRappels">
+
+    </ListView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnCreateRappel"
@@ -39,7 +41,8 @@
         app:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:rippleColor="#4CAF50"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnUpdateRappel"
@@ -48,11 +51,22 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        android:tint="#FFFFFF"
         app:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnCreateRappel"
-        app:rippleColor="#FFFFFF"
+        app:rippleColor="#2196F3"
         app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnDeleteRappel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnUpdateRappel"
+        app:rippleColor="#F44336"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
