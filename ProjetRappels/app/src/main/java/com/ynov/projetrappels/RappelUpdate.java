@@ -25,7 +25,6 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
 
     public DatabaseReference firebasedb;
 
-    public String strNomRappel;
     public String strNomUpdate;
     public String strHeureUpdate;
     public String strDateUpdate;
@@ -58,24 +57,31 @@ public class RappelUpdate extends AppCompatActivity implements TimePickerDialog.
         btnRetrieveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                strNomRappel = etNomRappel.getText().toString();
-                firebasedb = FirebaseDatabase.getInstance().getReference("rappels").child(strNomRappel);
-                firebasedb.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Rappel rappel = snapshot.getValue(Rappel.class);
-                        strHeureUpdate = rappel.heure;
-                        strDateUpdate = rappel.date;
+                strNomUpdate = etNomRappel.getText().toString();
 
-                        tvHeureSelected.setText(strHeureUpdate);
-                        tvDateSelected.setText(strDateUpdate);
-                    }
+                if(TextUtils.isEmpty(strNomUpdate)){
+                    Toast.makeText(RappelUpdate.this, "Un champ à remplir est vide", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RappelUpdate.this, "Information Récupérée !", Toast.LENGTH_SHORT).show();
+                    btnRetrieveData.setVisibility(View.INVISIBLE);
+                    firebasedb = FirebaseDatabase.getInstance().getReference("rappels").child(strNomUpdate);
+                    firebasedb.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Rappel rappel = snapshot.getValue(Rappel.class);
+                            strHeureUpdate = rappel.heure;
+                            strDateUpdate = rappel.date;
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                            tvHeureSelected.setText(strHeureUpdate);
+                            tvDateSelected.setText(strDateUpdate);
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
             }
         });
 

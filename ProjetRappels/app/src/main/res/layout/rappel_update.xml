@@ -117,6 +117,7 @@
         android:layout_marginBottom="20dp"
         android:clickable="true"
         app:backgroundTint="@color/teal_200"
+        app:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:rippleColor="#2196F3"
